@@ -1,0 +1,28 @@
+{
+  "name": "healthcareenabledblockchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luigidarco96/HealthcareEnabledBlockchain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luigidarco96/HealthcareEnabledBlockchain/issues"
+  },
+  "homepage": "https://github.com/luigidarco96/HealthcareEnabledBlockchain#readme",
+  "devDependencies": {
+    "@openzeppelin/cli": "^2.8.2",
+    "@openzeppelin/contracts": "^3.1.0",
+    "ganache-cli": "^6.10.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contract-loader": "^0.6.1",
+    "web3": "^1.2.11"
+  }
+}
