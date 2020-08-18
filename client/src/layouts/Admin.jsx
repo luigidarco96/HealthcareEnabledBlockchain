@@ -121,6 +121,7 @@ class Admin extends Component {
       this.setState({ fixedClasses: "dropdown" });
     }
   };
+  /*
   componentDidMount() {
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
@@ -155,6 +156,7 @@ class Admin extends Component {
       autoDismiss: 15
     });
   }
+  */
   componentDidUpdate(e) {
     if (
       window.innerWidth < 993 &&
@@ -182,7 +184,8 @@ class Admin extends Component {
             brandText={this.getBrandText(this.props.location.pathname)}
           />
           <Switch>{this.getRoutes(routes)}</Switch>
-          <Footer />
+          {/*<Footer />*/}
+          {/*
           <FixedPlugin
             handleImageClick={this.handleImageClick}
             handleColorClick={this.handleColorClick}
@@ -193,6 +196,7 @@ class Admin extends Component {
             handleFixedClick={this.handleFixedClick}
             fixedClasses={this.state.fixedClasses}
           />
+          */}
         </div>
       </div>
     );

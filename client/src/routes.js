@@ -27,6 +27,7 @@ import Upgrade from "views/Upgrade.jsx";
 import PersonalInfoList from "views/PersonalInfoList";
 
 const dashboardRoutes = [
+  /*
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -34,10 +35,11 @@ const dashboardRoutes = [
     component: Dashboard,
     layout: "/admin"
   },
+  */
   {
     path: "/accounts",
-    name: "Account List",
-    icon: "pe-7s-graph",
+    name: "Patients List",
+    icon: "pe-7s-user",
     component: AccountList,
     layout: "/admin"
   },
@@ -48,6 +50,7 @@ const dashboardRoutes = [
     component: PersonalInfoList,
     layout: "/admin"
   },
+  /*
   {
     path: "/user",
     name: "User Profile",
@@ -98,6 +101,7 @@ const dashboardRoutes = [
     component: Upgrade,
     layout: "/admin"
   }
+  */
 ];
 
 export default dashboardRoutes;
