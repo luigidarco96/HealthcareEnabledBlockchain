@@ -41,14 +41,24 @@ const dashboardRoutes = [
     name: "Patients List",
     icon: "pe-7s-user",
     component: AccountList,
-    layout: "/admin"
+    layout: "/admin",
+    inSidebar: true
+  },
+  {
+    path: "/personal-info",
+    name: "Personal Info List",
+    icon: "pe-7s-graph",
+    component: PersonalInfoList,
+    layout: "/admin",
+    inSidebar: true
   },
   {
     path: "/personal-info/:id",
     name: "Personal Info List",
     icon: "pe-7s-graph",
     component: PersonalInfoList,
-    layout: "/admin"
+    layout: "/admin",
+    inSidebar: false
   },
   /*
   {

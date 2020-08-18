@@ -137,4 +137,40 @@ export const PATIENTS = [
     surname: "D'Arco",
     public_key: "0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d"
   },
+  {
+    id: 4,
+    name: "Alister",
+    surname: "Houston",
+    public_key: "0xd03ea8624C8C5987235048901fB614fDcA89b117"
+  },
+  {
+    id: 5,
+    name: "Paddy",
+    surname: "Gale",
+    public_key: "0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC"
+  },
+  {
+    id: 6,
+    name: "Firat",
+    surname: "Ortega",
+    public_key: "0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9"
+  },
+  {
+    id: 7,
+    name: "Natalia",
+    surname: "Ballard",
+    public_key: "0x28a8746e75304c0780E011BEd21C72cD78cd535E"
+  },
+  {
+    id: 8,
+    name: "Jerome",
+    surname: "Knox",
+    public_key: "0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E"
+  },
+  {
+    id: 9,
+    name: "Ioana",
+    surname: "Richards",
+    public_key: "0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e"
+  },
 ]
