@@ -101,3 +101,30 @@ export const PERSONAL_INFO_ABI = [
       "type": "function"
     }
   ]
+
+export const PATIENTS = [
+  {
+    id: 0,
+    name: "Arturo",
+    surname: "Lalla",
+    public_key: "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
+  },
+  {
+    id: 1,
+    name: "Giorgio",
+    surname: "Tucano",
+    public_key: "0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0"
+  },
+  {
+    id: 2,
+    name: "Mauro",
+    surname: "Borrazzo",
+    public_key: "0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b"
+  },
+  {
+    id: 3,
+    name: "Luigi",
+    surname: "D'Arco",
+    public_key: "0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d"
+  },
+]

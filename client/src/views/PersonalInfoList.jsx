@@ -32,13 +32,13 @@ class PersonalInfoList extends Component {
   }
 
   componentWillMount() {
+    const id = this.props.match.params.id;
+    this.setState({ account: id })
     this.loadBlockchainData();
   }
 
   async loadBlockchainData() {
     const web3 = new Web3(Web3.givenProvider || "http://localhost:8545")
-    const accounts = await web3.eth.getAccounts()
-    this.setState({ accounts: accounts })
 
     const infoList = new web3.eth.Contract(PERSONAL_INFO_ABI, PERSONAL_INFO_ADDRESS);
     this.setState({ infoList })
@@ -48,10 +48,19 @@ class PersonalInfoList extends Component {
 
     for (var i = 1; i <= recordCount; i++) {
       const record = await infoList.methods.records(i).call()
-      this.setState({
-        records: [...this.state.records, record]
-      })
+      if (this.checkAccount(record['owner'])) {
+        this.setState({
+          records: [...this.state.records, record]
+        })
+      } else {
+        continue;
+      }
     }
+  }
+
+  checkAccount(currentAccount) {
+    const { account } = this.state;
+    return (account != '' && account != ':id' && account != currentAccount) ? false : true;
   }
 
   render() {
@@ -83,7 +92,6 @@ class PersonalInfoList extends Component {
                     <tbody>
                       {
                         records.map((element, key) => {
-                          console.log(element);
                           return (
                             <tr key={key}>
                               <td>{element.id}</td>

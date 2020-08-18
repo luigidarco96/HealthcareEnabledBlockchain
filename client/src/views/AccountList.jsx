@@ -18,8 +18,8 @@
 import React, { Component } from "react";
 import Web3 from 'web3';
 import { Grid, Row, Col, Table } from "react-bootstrap";
-
 import Card from "components/Card/Card.jsx";
+import { PATIENTS } from '../config';
 
 class AccountList extends Component {
 
@@ -31,13 +31,20 @@ class AccountList extends Component {
   }
 
   componentWillMount() {
-    this.loadBlockchainData();
+    //this.setState({accounts: PATIENTS})
+    // this.loadBlockchainData();
   }
 
+  /*
   async loadBlockchainData() {
     const web3 = new Web3(Web3.givenProvider || "http://localhost:8545")
     const accounts = await web3.eth.getAccounts()
     this.setState({accounts: accounts})
+  }
+  */
+
+  onClickAccount = (element) => {
+    window.location.href = "personal-info/" + element;
   }
 
   render() {
@@ -61,16 +68,22 @@ class AccountList extends Component {
                     <thead>
                       <tr>
                         <th>ID</th>
+                        <th>NAME</th>
+                        <th>SURNAME</th>
                         <th>PUBLIC KEY</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       {
-                        accounts.map((element, key) => {
+                        PATIENTS.map((element, key) => {
                           return(
                             <tr key={key}>
                               <td>{key}</td>
-                              <td>{element}</td>
+                              <td>{element.name}</td>
+                              <td>{element.surname}</td>
+                              <td>{element.public_key}</td>
+                              <td onClick={() => this.onClickAccount(element.public_key)}>go to personal info</td>
                             </tr>
                           )
                         })

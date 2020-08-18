@@ -42,7 +42,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/personal-info",
+    path: "/personal-info/:id",
     name: "Personal Info List",
     icon: "pe-7s-graph",
     component: PersonalInfoList,
