@@ -83,7 +83,7 @@ class AccountList extends Component {
                               <td>{element.name}</td>
                               <td>{element.surname}</td>
                               <td>{element.public_key}</td>
-                              <td onClick={() => this.onClickAccount(element.public_key)}>go to personal info</td>
+                              <td onClick={() => this.onClickAccount(element.public_key)}><i className="pe-7s-angle-right-circle"></i></td>
                             </tr>
                           )
                         })

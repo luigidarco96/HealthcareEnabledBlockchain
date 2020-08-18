@@ -63,6 +63,19 @@ class PersonalInfoList extends Component {
     return (account != '' && account != ':id' && account != currentAccount) ? false : true;
   }
 
+  formatTimestamp(timestamp) {
+    var date = new Date(timestamp * 1000);
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var seconds = "0" + date.getSeconds();
+    var year = date.getFullYear();
+    var month = "0" + (date.getMonth() + 1);
+    var day = "0" + date.getDate();
+
+    var formattedTime = year + '/' + month.substr(-2) + '/' + day.substr(-2) + ' - ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    return formattedTime;
+  }
+
   render() {
 
     const {
@@ -84,6 +97,7 @@ class PersonalInfoList extends Component {
                     <thead>
                       <tr>
                         <th>ID</th>
+                        <th>Timestamp</th>
                         <th>SpO2</th>
                         <th>Heart rate</th>
                         <th>Owner</th>
@@ -95,6 +109,7 @@ class PersonalInfoList extends Component {
                           return (
                             <tr key={key}>
                               <td>{element.id}</td>
+                              <td>{this.formatTimestamp(element.timestamp)}</td>
                               <td>{element.SpO2}</td>
                               <td>{element.HR}</td>
                               <td>{element.owner}</td>
