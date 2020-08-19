@@ -3,11 +3,6 @@
 const Web3 = require('web3');
 const { setupLoader } = require('@openzeppelin/contract-loader');
 
-function getAccount() {
-    var myArgs = process.argv.slice(2);
-    return myArgs[0];
-}
-
 function randomBetween(min, max) {  
     return Math.floor(
       Math.random() * (max - min) + min
