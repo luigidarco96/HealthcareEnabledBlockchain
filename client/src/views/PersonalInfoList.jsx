@@ -20,6 +20,7 @@ import Web3 from 'web3';
 import { Grid, Row, Col, Table } from "react-bootstrap";
 import { PERSONAL_INFO_ADDRESS, PERSONAL_INFO_ABI } from '../config';
 import Card from "components/Card/Card.jsx";
+import { isTypeQueryNode } from "typescript";
 
 class PersonalInfoList extends Component {
 
@@ -31,10 +32,9 @@ class PersonalInfoList extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const id = this.props.match.params.id;
-    this.setState({ account: id })
-    this.loadBlockchainData();
+    this.setState({ account: id }, () => this.loadBlockchainData())
   }
 
   async loadBlockchainData() {
@@ -60,7 +60,11 @@ class PersonalInfoList extends Component {
 
   checkAccount(currentAccount) {
     const { account } = this.state;
-    return (account != '' && account != ':id' && account != currentAccount) ? false : true;
+    console.log("Account:" + account);
+    console.log("Current account: " + currentAccount);
+    if (account == '' || account == undefined) return true;
+    else if (account == currentAccount) return true;
+    else return false;
   }
 
   formatTimestamp(timestamp) {

@@ -45,20 +45,20 @@ const dashboardRoutes = [
     inSidebar: true
   },
   {
-    path: "/personal-info",
-    name: "Personal Info List",
-    icon: "pe-7s-graph",
-    component: PersonalInfoList,
-    layout: "/admin",
-    inSidebar: true
-  },
-  {
     path: "/personal-info/:id",
     name: "Personal Info List",
     icon: "pe-7s-graph",
     component: PersonalInfoList,
     layout: "/admin",
     inSidebar: false
+  },
+  {
+    path: "/personal-info",
+    name: "Personal Info List",
+    icon: "pe-7s-graph",
+    component: PersonalInfoList,
+    layout: "/admin",
+    inSidebar: true
   },
   /*
   {
