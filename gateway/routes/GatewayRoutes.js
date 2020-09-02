@@ -1,6 +1,6 @@
-var transactionController = require('../controllers/TransactionController');
-var sendTransaction = transactionController.sendTransaction;
+var { startChallenge, handleSolution } = require('../controllers/GatewayController');
 
 module.exports = function(app) {
-    app.get('/send-data', sendTransaction);
+    app.post('/data', startChallenge);
+    app.post('/solution', handleSolution);
 }
