@@ -1,0 +1,14 @@
+[
+    {
+        "id": 0,
+        "name": "Jack Black",
+        "email": "jb@gmail.com",
+        "password": "$2b$10$srTgAT4U2GtQkXkTjLvqJ.iPhzJwR0gVg4/8U4O8hA96IdGAT4cHe"
+    },
+    {
+        "id": 1,
+        "name": "Frank Sinatra",
+        "email": "frank@gmail.com",
+        "password": "$2b$10$jV9eB4xl9ESbwkwwDQ6fOuyODDj5glxg8b4QiEiGPi.sVigHJS.Y."
+    }
+]

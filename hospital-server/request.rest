@@ -1,0 +1,12 @@
+GET https://localhost:3000
+//Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRnJhbmsgU2luYXRyYSIsImVtYWlsIjoiZnJhbmtAZ21haWwuY29tIiwiaWF0IjoxNTk5MTQ1MTA0fQ.H9MzZwNtJCJw1Q56QvU9vVU-djZxNr79u6Wz3dGeObM_Ysp9FD84vH0rFON4YtmIjvk2IDD_uNs4NBuyApUnWg
+
+###
+
+POST https://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "frank@gmail.com",
+    "password": "password1"
+}
