@@ -83,8 +83,25 @@ var sendTransaction = async (obj) => {
     const bpm = obj.bpm;
 
     // Execute transaction
-    await contract.methods.createRecord(spo2, bpm)
-        .send({from: obj.address, gas: 1000000, gasPrice: 1e6});
+    const transaction = await contract.methods.createRecord(spo2, bpm)
+        .send({from: obj.address, gas: 1000000, gasPrice: 1e6})
+    
+    return transaction
+}
+
+var returnSuccess = (res, message) => {
+    res.json({
+        message: message,
+        status: true
+    })
+}
+
+var returnError = (res, message, code) => {
+    res.status(code)
+    res.json({
+        message: message,
+        status: false
+    })
 }
 
 module.exports = {
@@ -104,22 +121,28 @@ module.exports = {
     handleSolution: function (req, res) {
         // Parse input
         let parsedInput = checkInputSolution(req.body);
-        if (checkEmptyObject(parsedInput)) throw new Error("Input paramaters invalid");
+        if (checkEmptyObject(parsedInput)) returnError(res, "Input paramaters invalid", 400);
 
         // Get old challenge
         tmpUser = getLastTmpUser(parsedInput.solution, parsedInput.address);
-        if (tmpUser === undefined || tmpUser === null) throw new Error("Challenge doesn't exist");
+        if (tmpUser === undefined || tmpUser === null) returnError(res, "Challenge doesn't exist", 400);
 
         // Compare the challenge generated with the solution received
         if (!compareChallenge(tmpUser.id, parsedInput.solution)) {
-            throw new Error("Invalid challenge solution");
+            returnError(res, "Invalid challenge solution", 400);
         } else {
             // Delete the tmp user
             deleteTmpUser(parsedInput.solution, parsedInput.address);
 
             // Send transaction
-            sendTransaction(tmpUser);
-            res.json({"message": "Transaction done!"});
+            sendTransaction(tmpUser)
+            .then((result) => {
+                returnSuccess(res, "Transaction done!");
+            })
+            .catch((error) => {
+                console.log("Error: " + error);
+                returnError(res, "Transaction not executed", 500);
+            })
         }
     }
 }

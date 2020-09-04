@@ -35,6 +35,14 @@ var postData = async (url = '', data = {}) => {
     return response.json();
 }
 
+var handleErrors = (response) => {
+    if (!response.ok) {
+        console.log("Error: " + response.data.message)
+        //throw Error(response.statusText);
+    }
+    return response;
+}
+
 async function main() {
     // Generate PublicKey from the PrivateKey
     const publicKey = getPublicKey(MY_PRIVATE_KEY);
@@ -56,9 +64,13 @@ async function main() {
                     // Send the solution
                     postData(URL_SERVER + "/solution", { solution: plainData, address: MY_ADDRESS })
                         .then(data => {
-                            console.log(data);
-                            console.log("Transaction body:");
-                            console.dir(bodyData);
+                            console.log("============================");
+                            console.log(data.message);
+                            if (data.status) {
+                                console.log("Transaction body:");
+                                console.dir(bodyData);
+                            }
+                            console.log("============================");
                         })
                 })
         })
