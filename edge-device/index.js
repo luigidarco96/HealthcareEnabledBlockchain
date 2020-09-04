@@ -1,5 +1,8 @@
-const {URL_SERVER, MY_PRIVATE_KEY, MY_ADDRESS} = require('./config');
-const fetch = require("node-fetch");
+// Remove in production - it is needed for the use of a self-signed certificate
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+const { URL_SERVER, MY_PRIVATE_KEY, MY_ADDRESS } = require('./config');
+const fetch = require('node-fetch');
 const EthCrypto = require('eth-crypto');
 
 var getPublicKey = (privateKey) => {
@@ -44,7 +47,7 @@ async function main() {
         bpm: randomBetween(55, 150)
     }
 
-    // Start the Challenge process
+    // Start the Challenge process       
     postData(URL_SERVER + "/data", bodyData)
         .then(encryptedData => {
             // Decrypt the challenge
