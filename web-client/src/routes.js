@@ -25,6 +25,7 @@ import Maps from "views/Maps.jsx";
 import Notifications from "views/Notifications.jsx";
 import Upgrade from "views/Upgrade.jsx";
 import PersonalInfoList from "views/PersonalInfoList";
+import Login from "views/Login";
 
 const dashboardRoutes = [
   /*
