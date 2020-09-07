@@ -82,9 +82,12 @@ exports.addPatient = (req, res) => {
     let data = JSON.stringify(patientModel, null, 2);
 
     fs.writeFile('./hospital-server/models/patientModel.json', data, (err) => {
-        if (err) throw err;
-        console.log('Data written to file');
+        if (err) {
+            res.status(500).send();
+            throw err;
+        } else {
+            console.log('Data written to file');
+            res.status(200).send();
+        }
     });
-
-    res.status(200).send();
 }
