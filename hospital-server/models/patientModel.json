@@ -1,26 +1,36 @@
 [
-    {
+  {
+    "id": 0,
+    "name": "Jack Black",
+    "email": "jb@gmail.com",
+    "password": "$2b$10$srTgAT4U2GtQkXkTjLvqJ.iPhzJwR0gVg4/8U4O8hA96IdGAT4cHe",
+    "patients": [
+      {
         "id": 0,
-        "name": "Jack Black",
-        "email": "jb@gmail.com",
-        "password": "$2b$10$srTgAT4U2GtQkXkTjLvqJ.iPhzJwR0gVg4/8U4O8hA96IdGAT4cHe",
-        "patients": [{
-            "id": 0,
-            "name": "Mauro Borrazzo",
-            "email": "m.borrazzo@studenti.unisa.it",
-            "public_key": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
-        }]
-    },
-    {
+        "name": "Mauro Borrazzo",
+        "email": "m.borrazzo@studenti.unisa.it",
+        "public_key": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
+      },
+      {
         "id": 1,
-        "name": "Frank Sinatra",
-        "email": "frank@gmail.com",
-        "password": "$2b$10$jV9eB4xl9ESbwkwwDQ6fOuyODDj5glxg8b4QiEiGPi.sVigHJS.Y.",
-        "patients": [{
-            "id": 0,
-            "name": "Giorgio Tucano",
-            "email": "giorgio.tucano@gmail.com",
-            "public_key": "0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0"
-        }]
-    }
+        "name": "Luigi D'Arco",
+        "email": "luigi.darco@gmail.com",
+        "publicKey": "0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Frank Sinatra",
+    "email": "frank@gmail.com",
+    "password": "$2b$10$jV9eB4xl9ESbwkwwDQ6fOuyODDj5glxg8b4QiEiGPi.sVigHJS.Y.",
+    "patients": [
+      {
+        "id": 0,
+        "name": "Giorgio Tucano",
+        "email": "giorgio.tucano@gmail.com",
+        "public_key": "0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0"
+      }
+    ]
+  }
 ]

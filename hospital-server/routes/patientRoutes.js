@@ -8,4 +8,6 @@ module.exports = function (app) {
     app.post('/login', patientController.login);
 
     app.get('/listPatients', patientController.authenticateToken, patientController.listPatients);
+
+    app.post('/addPatient', patientController.authenticateToken, patientController.addPatient);
 }

@@ -56,3 +56,35 @@ exports.listPatients = (req, res) => {
 
     res.json({ patients: patients });
 }
+
+exports.addPatient = (req, res) => {
+    const publicKey = fs.readFileSync('./hospital-server/keys/public.key');
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    const decodedToken = jwt.verify(token, publicKey);
+
+    var id;
+    const name = req.body.name;
+    const email = req.body.email;
+    const key = req.body.publicKey;
+
+    patientModel.forEach(pat => {
+        if(decodedToken.id === pat.id) {
+            pat.patients.forEach(p => {
+                id = p.id;
+            })
+            id += 1;
+            const newPatient = { id: id, name: name, email: email, publicKey: key }
+            pat.patients.push(newPatient);
+        }
+    });
+
+    let data = JSON.stringify(patientModel, null, 2);
+
+    fs.writeFile('./hospital-server/models/patientModel.json', data, (err) => {
+        if (err) throw err;
+        console.log('Data written to file');
+    });
+
+    res.status(200).send();
+}

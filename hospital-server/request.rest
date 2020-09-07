@@ -15,3 +15,15 @@ Content-Type: application/json
 
 GET https://localhost:3000/listPatients
 Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwibmFtZSI6IkphY2sgQmxhY2siLCJlbWFpbCI6ImpiQGdtYWlsLmNvbSIsImlhdCI6MTU5OTQ5MTc4N30.ZUBfYqdDldlUfHsrvq1QBmaDYYQuCiU4bX3xzqQBrcmtcUc-NxrMh2tfUXpIEMQ8MqAE6Mev9a6RrZa25dobnA
+
+###
+
+POST https://localhost:3000/addPatient
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwibmFtZSI6IkphY2sgQmxhY2siLCJlbWFpbCI6ImpiQGdtYWlsLmNvbSIsImlhdCI6MTU5OTQ5MTc4N30.ZUBfYqdDldlUfHsrvq1QBmaDYYQuCiU4bX3xzqQBrcmtcUc-NxrMh2tfUXpIEMQ8MqAE6Mev9a6RrZa25dobnA
+Content-Type: application/json
+
+{
+    "name": "Luigi D'Arco",
+    "email": "luigi.darco@gmail.com",
+    "publicKey": "0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d"
+}
