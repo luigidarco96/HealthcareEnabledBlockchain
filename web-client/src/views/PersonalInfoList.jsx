@@ -27,6 +27,8 @@ class PersonalInfoList extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      account: "",
+      name: "",
       recordCount: 0,
       records: [],
     }
@@ -34,7 +36,11 @@ class PersonalInfoList extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.setState({ account: id }, () => this.loadBlockchainData())
+    const name = this.props.match.params.name;
+    this.setState({ 
+      account: id, 
+      name: name
+    }, () => this.loadBlockchainData())
   }
 
   async loadBlockchainData() {
@@ -84,7 +90,8 @@ class PersonalInfoList extends Component {
             return <Redirect to='/login' />
 
     const {
-      records
+      records,
+      name
     } = this.state
 
     return (
@@ -93,8 +100,8 @@ class PersonalInfoList extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Personal Info List"
-                category="Here is a list of personal info saved on the blockchain"
+                title={"Personal Info List of " + name}
+                category={"Here is a list of personal info saved on the blockchain belong to " + name}
                 ctTableFullWidth
                 ctTableResponsive
                 content={
@@ -105,7 +112,6 @@ class PersonalInfoList extends Component {
                         <th>Timestamp</th>
                         <th>SpO2</th>
                         <th>Heart rate</th>
-                        <th>Owner</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -117,7 +123,6 @@ class PersonalInfoList extends Component {
                               <td>{this.formatTimestamp(element.timestamp)}</td>
                               <td>{element.SpO2}</td>
                               <td>{element.HR}</td>
-                              <td>{element.owner}</td>
                             </tr>
                           )
                         })

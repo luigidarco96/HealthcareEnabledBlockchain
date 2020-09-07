@@ -67,8 +67,8 @@ class AccountList extends Component {
       });
   }
 
-  onClickAccount = (element) => {
-    window.location.href = "personal-info/" + element;
+  onClickAccount = (element, name) => {
+    window.location.href = "personal-info/" + element + "/" + name;
   }
 
   onClickAddNewPatient = () => {
@@ -90,8 +90,8 @@ class AccountList extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Account List"
-                category="Here is a list of accounts signed up on the blockchain"
+                title="Patients List"
+                category="Here is a list of your patients"
                 ctTableFullWidth
                 ctTableResponsive
                 content={
@@ -114,7 +114,7 @@ class AccountList extends Component {
                                 <td>{element.name}</td>
                                 <td>{element.email}</td>
                                 <td>{element.publicKey}</td>
-                                <td onClick={() => this.onClickAccount(element.public_key)}><i className="pe-7s-angle-right-circle"></i></td>
+                                <td onClick={() => this.onClickAccount(element.publicKey, element.name)}><i className="pe-7s-angle-right-circle"></i></td>
                               </tr>
                             )
                           })
