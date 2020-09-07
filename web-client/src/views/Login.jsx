@@ -3,7 +3,9 @@ import { FormInputs } from 'components/FormInputs/FormInputs.jsx'
 import Button from 'components/CustomButton/CustomButton';
 import { Grid, Row, Col, Label } from "react-bootstrap";
 import { Card } from "components/Card/Card.jsx";
-import axios from 'axios';
+import NotificationSystem from 'react-notification-system';
+import {style} from "variables/Variables.jsx";
+import { Redirect } from 'react-router-dom';
 
 import Select from 'react-select';
 
@@ -17,14 +19,40 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props)
+        this.handleClick = this.handleClick.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.state = {
+            _notificationSystem: null
+        };
+    }
+
+    componentWillMount() {
+        
+    }
+
+    componentDidMount() {
         this.state = {
             email: 'jb@gmail.com',
             password: 'password',
             hospital: '',
+            _notificationSystem: this.refs.notificationSystem
         }
     }
 
-    componentWillMount() { }
+    handleClick(position){
+        var level = 'error'; // 'success', 'warning', 'error' or 'info'
+        this.state._notificationSystem.addNotification({
+            title: (<span data-notify="icon" className="pe-7s-gift"></span>),
+            message: (
+                <div>
+                    Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer.
+                </div>
+            ),
+            level: level,
+            position: position,
+            autoDismiss: 15,
+        });
+    }
 
     changeEmailHandler = event => {
         this.setState({
@@ -44,42 +72,11 @@ export default class Login extends Component {
         });
     }
 
-    postData = async (url = '', data = {}) => {
-        const response = await fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify(data)
-        });
-        return response;
-    }
-
     login = (params) => {
         const user = {
             email: this.state.email,
             password: this.state.password
         };
-        console.log(user);
-        /*axios.post(`https://localhost:3000/login`, {user}).then(res => {
-            console.log(res)
-        })*/
-
-        /*this.postData('https://localhost:3000/login', user)
-            .then((response) => {
-            if (response.ok) {
-                console.log(response.json());
-            } else {
-                throw new Error('Something went wrong');
-            }
-        }).then(res => {
-            console.log(res)
-        })*/
 
         fetch('https://localhost:3000/login', {
             method: 'POST',
@@ -98,27 +95,34 @@ export default class Login extends Component {
             }
         })
         .then((responseJson) => {
-            console.log(responseJson)
+            localStorage.setItem('token', responseJson.accessToken);
+            console.log(localStorage.getItem('token'));
+            window.location.href = "admin/accounts";
         })
         .catch((error) => {
+            this.handleClick.bind(this, 'tc')
             console.log('error')
         });
     }
 
     handleErrors(response) {
         if (!response.ok) {
+            this.handleClick.bind(this, 'tc')
             throw Error(response.statusText);
         }
         return response;
     }
 
     render() {
+        if(localStorage.getItem('token') !== null)
+            return <Redirect to='/admin/accounts' />
         return (
             <Grid fluid
                 style={{
                     position: 'absolute', left: '50%', top: '50%',
                     transform: 'translate(-50%, -50%)'
                 }}>
+                <NotificationSystem ref="notificationSystem" style={style}/>
                 <Row>
                     <Col md={12}>
                         <Card

@@ -29,12 +29,14 @@ import Login from "views/Login.jsx";
 
 import AdminLayout from "layouts/Admin.jsx";
 
+const path = (localStorage.getItem('token') === null) ? '/login' : '/admin/accounts';
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
-      <Redirect from="/" to="/login" />
+      <Redirect from="/" to={ path } />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

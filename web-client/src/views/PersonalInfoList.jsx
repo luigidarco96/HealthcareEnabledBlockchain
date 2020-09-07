@@ -20,6 +20,7 @@ import Web3 from 'web3';
 import { Grid, Row, Col, Table } from "react-bootstrap";
 import { PERSONAL_INFO_ADDRESS, PERSONAL_INFO_ABI } from '../config';
 import Card from "components/Card/Card.jsx";
+import { Redirect } from 'react-router-dom';
 
 class PersonalInfoList extends Component {
 
@@ -59,8 +60,8 @@ class PersonalInfoList extends Component {
 
   checkAccount(currentAccount) {
     const { account } = this.state;
-    if (account == '' || account == undefined) return true;
-    else if (account == currentAccount) return true;
+    if (account === '' || account == undefined) return true;
+    else if (account === currentAccount) return true;
     else return false;
   }
 
@@ -78,6 +79,9 @@ class PersonalInfoList extends Component {
   }
 
   render() {
+
+    if(localStorage.getItem('token') === null)
+            return <Redirect to='/login' />
 
     const {
       records

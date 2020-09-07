@@ -16,7 +16,7 @@
 
 */
 import React, { Component } from "react";
-import Web3 from 'web3';
+import { Redirect } from 'react-router-dom';
 import { Grid, Row, Col, Table } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import { PATIENTS } from '../config';
@@ -48,6 +48,9 @@ class AccountList extends Component {
   }
 
   render() {
+
+    if(localStorage.getItem('token') === null)
+            return <Redirect to='/login' />
 
     const {
       accounts
