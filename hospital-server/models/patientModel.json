@@ -9,13 +9,37 @@
         "id": 0,
         "name": "Mauro Borrazzo",
         "email": "m.borrazzo@studenti.unisa.it",
-        "public_key": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
+        "publicKey": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
       },
       {
         "id": 1,
         "name": "Luigi D'Arco",
         "email": "luigi.darco@gmail.com",
         "publicKey": "0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d"
+      },
+      {
+        "id": 2,
+        "name": "Giorgio Tucano",
+        "email": "tucano@gmail.com",
+        "publicKey": "0x949494949494949"
+      },
+      {
+        "id": 3,
+        "name": "Arturo Lalla",
+        "email": "lla@gmail.com",
+        "publicKey": "0x494949494"
+      },
+      {
+        "id": 4,
+        "name": "Mario Rossi",
+        "email": "rossi@gmail.com",
+        "publicKey": "0x0388595955959"
+      },
+      {
+        "id": 5,
+        "name": "Nicola ATT",
+        "email": "tt@gmail.com",
+        "publicKey": "0xknfineonwfcde"
       }
     ]
   },

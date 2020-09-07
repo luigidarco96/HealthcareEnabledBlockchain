@@ -25,7 +25,8 @@ import Maps from "views/Maps.jsx";
 import Notifications from "views/Notifications.jsx";
 import Upgrade from "views/Upgrade.jsx";
 import PersonalInfoList from "views/PersonalInfoList";
-import Login from "views/Login";
+import AddPatient from "views/AddPatient";
+import SignOut from "views/SignOut";
 
 const dashboardRoutes = [
   /*
@@ -61,6 +62,22 @@ const dashboardRoutes = [
     layout: "/admin",
     inSidebar: true
   },
+  {
+    path: "/add-patient",
+    name: "Add Patient",
+    icon: "pe-7s-graph",
+    component: AddPatient,
+    layout: "/admin",
+    inSidebar: false
+  },
+  {
+    path: "/sign-out",
+    name: "Logout",
+    icon: "pe-7s-graph",
+    component: SignOut,
+    layout: "/admin",
+    inSidebar: true,
+  }
   /*
   {
     path: "/user",

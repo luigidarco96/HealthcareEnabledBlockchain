@@ -19,6 +19,7 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { Grid, Row, Col, Table } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
+import Button from 'components/CustomButton/CustomButton';
 import { PATIENTS } from '../config';
 
 class AccountList extends Component {
@@ -26,34 +27,61 @@ class AccountList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      accounts: []
+      patients: []
     }
   }
 
   componentWillMount() {
-    //this.setState({accounts: PATIENTS})
-    // this.loadBlockchainData();
+    this.loadPatient();
   }
 
-  /*
-  async loadBlockchainData() {
-    const web3 = new Web3(Web3.givenProvider || "http://localhost:8545")
-    const accounts = await web3.eth.getAccounts()
-    this.setState({accounts: accounts})
+  loadPatient = () => {
+
+    const url_server = "https://localhost:3000/listPatients";
+
+    fetch(url_server, {
+      method: 'GET',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      }),
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer'
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Something went wrong');
+        }
+      })
+      .then((responseJson) => {
+        this.setState({
+          patients: responseJson.patients
+        })
+      })
+      .catch((error) => {
+        console.log("Error: " + error);
+      });
   }
-  */
 
   onClickAccount = (element) => {
     window.location.href = "personal-info/" + element;
   }
 
+  onClickAddNewPatient = () => {
+    window.location.href = "add-patient";
+  }
+
   render() {
 
-    if(localStorage.getItem('token') === null)
-            return <Redirect to='/login' />
+    if (localStorage.getItem('token') === null)
+      return <Redirect to='/login' />
 
     const {
-      accounts
+      patients
     } = this.state
 
     return (
@@ -67,32 +95,33 @@ class AccountList extends Component {
                 ctTableFullWidth
                 ctTableResponsive
                 content={
-                  <Table striped hover>
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>SURNAME</th>
-                        <th>PUBLIC KEY</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        PATIENTS.map((element, key) => {
-                          return(
-                            <tr key={key}>
-                              <td>{key}</td>
-                              <td>{element.name}</td>
-                              <td>{element.surname}</td>
-                              <td>{element.public_key}</td>
-                              <td onClick={() => this.onClickAccount(element.public_key)}><i className="pe-7s-angle-right-circle"></i></td>
-                            </tr>
-                          )
-                        })
-                      }
-                    </tbody>
-                  </Table>
+                  <div>
+                    <Button bsStyle="info" pullRight fill onClick={this.onClickAddNewPatient}>Add a new patient</Button>
+                    <Table striped hover>
+                      <thead>
+                        <tr>
+                          <th>NAME</th>
+                          <th>EMAIL</th>
+                          <th>BLOCKCHAIN ADDRESS</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          patients.map((element, key) => {
+                            return (
+                              <tr key={key}>
+                                <td>{element.name}</td>
+                                <td>{element.email}</td>
+                                <td>{element.publicKey}</td>
+                                <td onClick={() => this.onClickAccount(element.public_key)}><i className="pe-7s-angle-right-circle"></i></td>
+                              </tr>
+                            )
+                          })
+                        }
+                      </tbody>
+                    </Table>
+                  </div>
                 }
               />
             </Col>

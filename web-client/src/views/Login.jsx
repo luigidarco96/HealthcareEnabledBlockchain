@@ -6,14 +6,9 @@ import { Card } from "components/Card/Card.jsx";
 import NotificationSystem from 'react-notification-system';
 import {style} from "variables/Variables.jsx";
 import { Redirect } from 'react-router-dom';
+import { server_urls } from '../config';
 
 import Select from 'react-select';
-
-const options = [
-    { value: 'https://localhost:3000', label: 'St. John Hospital' },
-    { value: '*', label: 'McLean Hospital' },
-    { value: '*', label: 'Beverly Hospital' }
-]
 
 export default class Login extends Component {
 
@@ -135,7 +130,7 @@ export default class Login extends Component {
                                     <Row>
                                         <Col md={12}>
                                             <Label>Select Hospital</Label>
-                                            <Select options={options} onChange={this.changeHospitalHandler} />
+                                            <Select options={server_urls} onChange={this.changeHospitalHandler} />
                                         </Col>
                                     </Row>
                                     <FormInputs
