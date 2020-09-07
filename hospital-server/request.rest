@@ -1,5 +1,5 @@
 GET https://localhost:3000
-//Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRnJhbmsgU2luYXRyYSIsImVtYWlsIjoiZnJhbmtAZ21haWwuY29tIiwiaWF0IjoxNTk5MTQ1MTA0fQ.H9MzZwNtJCJw1Q56QvU9vVU-djZxNr79u6Wz3dGeObM_Ysp9FD84vH0rFON4YtmIjvk2IDD_uNs4NBuyApUnWg
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwibmFtZSI6IkphY2sgQmxhY2siLCJlbWFpbCI6ImpiQGdtYWlsLmNvbSIsImlhdCI6MTU5OTQ5MTc4N30.ZUBfYqdDldlUfHsrvq1QBmaDYYQuCiU4bX3xzqQBrcmtcUc-NxrMh2tfUXpIEMQ8MqAE6Mev9a6RrZa25dobnA
 
 ###
 
@@ -10,3 +10,8 @@ Content-Type: application/json
     "email": "jb@gmail.com",
     "password": "password"
 }
+
+###
+
+GET https://localhost:3000/listPatients
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwibmFtZSI6IkphY2sgQmxhY2siLCJlbWFpbCI6ImpiQGdtYWlsLmNvbSIsImlhdCI6MTU5OTQ5MTc4N30.ZUBfYqdDldlUfHsrvq1QBmaDYYQuCiU4bX3xzqQBrcmtcUc-NxrMh2tfUXpIEMQ8MqAE6Mev9a6RrZa25dobnA

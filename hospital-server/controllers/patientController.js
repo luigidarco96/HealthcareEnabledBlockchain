@@ -11,7 +11,8 @@ exports.login = (req, res) => {
             if(email === p.email) {
                 if(await bcrypt.compare(req.body.password, p.password)) {
                     const name = p.name;
-                    const user = { name: name, email: email }
+                    const id = p.id;
+                    const user = { id: id, name: name, email: email }
                     var privateKey = fs.readFileSync('./hospital-server/keys/private.key');
                     var accessToken = jwt.sign(user, privateKey, { algorithm: 'RS256'});
 
@@ -32,7 +33,7 @@ exports.authenticateToken = (req, res, next) => {
     const token = authHeader && authHeader.split(' ')[1]
     if (token == null) return res.sendStatus(401)
 
-    var publicKey = fs.readFileSync('./hospital-server/keys/public.key');
+    const publicKey = fs.readFileSync('./hospital-server/keys/public.key');
     jwt.verify(token, publicKey, (err, user) => {
         if (err) return res.sendStatus(403)
         req.user = user
@@ -41,5 +42,17 @@ exports.authenticateToken = (req, res, next) => {
 }
 
 exports.listPatients = (req, res) => {
+    const publicKey = fs.readFileSync('./hospital-server/keys/public.key');
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    const decodedToken = jwt.verify(token, publicKey);
+    var patients;
 
+    patientModel.forEach((p) => {
+        if(p.id === decodedToken.id) {
+            patients = p.patients;
+        }
+    });
+
+    res.json({ patients: patients });
 }
