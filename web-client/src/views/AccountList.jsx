@@ -20,7 +20,6 @@ import { Redirect } from 'react-router-dom';
 import { Grid, Row, Col, Table } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import Button from 'components/CustomButton/CustomButton';
-import { PATIENTS } from '../config';
 
 class AccountList extends Component {
 

@@ -18,8 +18,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-import AdminNavbarLinks from "../Navbars/AdminNavbarLinks.jsx";
-
 import logo from "assets/img/reactlogo.png";
 
 class Sidebar extends Component {
@@ -57,7 +55,7 @@ class Sidebar extends Component {
           )}
         <div className="logo">
           <a
-            href=""
+            href="#"
             className="simple-text logo-mini"
           >
             <div className="logo-img">
@@ -65,7 +63,7 @@ class Sidebar extends Component {
             </div>
           </a>
           <a
-            href=""
+            href="#"
             className="simple-text logo-normal"
           >
             HEALTH-CHAIN

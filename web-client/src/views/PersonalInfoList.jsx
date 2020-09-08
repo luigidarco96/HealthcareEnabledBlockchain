@@ -66,7 +66,7 @@ class PersonalInfoList extends Component {
 
   checkAccount(currentAccount) {
     const { account } = this.state;
-    if (account === '' || account == undefined) return true;
+    if (account === '' || account === undefined) return true;
     else if (account === currentAccount) return true;
     else return false;
   }

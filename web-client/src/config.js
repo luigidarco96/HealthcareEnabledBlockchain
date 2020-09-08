@@ -113,7 +113,7 @@ export const PERSONAL_INFO_ABI = [
 ];
 
 export const server_urls = [
-  { value: 'https://localhost:3000', label: 'St. John Hospital' },
-  { value: '*', label: 'McLean Hospital' },
-  { value: '*', label: 'Beverly Hospital' }
+  { value: 'localhost:3000', label: 'St. John Hospital' },
+  { value: 'localhost:3001', label: 'McLean Hospital' },
+  { value: 'localhost:3002', label: 'Beverly Hospital' }
 ]

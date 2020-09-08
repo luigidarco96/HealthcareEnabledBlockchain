@@ -16,9 +16,6 @@ export default class Login extends Component {
         super(props)
         this.handleClick = this.handleClick.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
-        this.state = {
-            _notificationSystem: null
-        };
     }
 
     componentWillMount() {
@@ -67,13 +64,16 @@ export default class Login extends Component {
         });
     }
 
-    login = (params) => {
+    login = () => {
         const user = {
             email: this.state.email,
             password: this.state.password
         };
 
-        fetch('https://localhost:3000/login', {
+        const url = 'https://localhost:3000/login';
+        console.log(this.state.hospital)
+        
+        fetch(url, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -83,11 +83,11 @@ export default class Login extends Component {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(user)})
             .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Something went wrong');
-            }
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong');
+                }
         })
         .then((responseJson) => {
             localStorage.setItem('token', responseJson.accessToken);
@@ -98,6 +98,7 @@ export default class Login extends Component {
             this.handleClick.bind(this, 'tc')
             console.log('error')
         });
+        console.log('e qua?')
     }
 
     handleErrors(response) {
@@ -153,7 +154,8 @@ export default class Login extends Component {
                                                 onChange: this.changePasswordHandler
                                             }
                                         ]}
-                                    />
+                                    >
+                                    </FormInputs>
                                     <Button bsStyle="primary" pullRight onClick={this.login}>Login</Button>
                                 </Col>
                             }
