@@ -36,7 +36,7 @@ class AccountList extends Component {
 
   loadPatient = () => {
 
-    const url_server = "https://localhost:3000/listPatients";
+    const url_server = localStorage.getItem('url') + '/listPatients';
 
     fetch(url_server, {
       method: 'GET',

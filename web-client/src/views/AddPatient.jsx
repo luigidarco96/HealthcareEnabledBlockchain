@@ -59,7 +59,7 @@ class UserProfile extends Component {
   onSubmit = (event) => {
     event.preventDefault();
 
-    const url_server = "https://localhost:3000/addPatient";
+    const url_server = localStorage.getItem('url') + '/addPatient';
 
     console.log(url_server);
 
