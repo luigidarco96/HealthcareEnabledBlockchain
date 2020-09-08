@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { FormInputs } from 'components/FormInputs/FormInputs.jsx'
 import Button from 'components/CustomButton/CustomButton';
-import { Grid, Row, Col, Label } from "react-bootstrap";
+import { Grid, Row, Col, Label, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 import { Card } from "components/Card/Card.jsx";
 import NotificationSystem from 'react-notification-system';
-import {style} from "variables/Variables.jsx";
+import { style } from "variables/Variables.jsx";
 import { Redirect } from 'react-router-dom';
 import { server_urls } from '../config';
 
@@ -15,23 +15,17 @@ export default class Login extends Component {
     constructor(props) {
         super(props)
         this.handleClick = this.handleClick.bind(this);
-        this.componentDidMount = this.componentDidMount.bind(this);
-    }
 
-    componentWillMount() {
-        
-    }
-
-    componentDidMount() {
         this.state = {
             email: 'jb@gmail.com',
             password: 'password',
             hospital: '',
+            radioHospital: "1",
             _notificationSystem: this.refs.notificationSystem
         }
     }
 
-    handleClick(position){
+    handleClick(position) {
         var level = 'error'; // 'success', 'warning', 'error' or 'info'
         this.state._notificationSystem.addNotification({
             title: (<span data-notify="icon" className="pe-7s-gift"></span>),
@@ -71,33 +65,33 @@ export default class Login extends Component {
         };
 
         const url = 'https://localhost:3000/login';
-        console.log(this.state.hospital)
-        
+
         fetch(url, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
             credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             redirect: 'follow',
             referrerPolicy: 'no-referrer',
-            body: JSON.stringify(user)})
+            body: JSON.stringify(user)
+        })
             .then((response) => {
                 if (response.ok) {
                     return response.json();
                 } else {
                     throw new Error('Something went wrong');
                 }
-        })
-        .then((responseJson) => {
-            localStorage.setItem('token', responseJson.accessToken);
-            console.log(localStorage.getItem('token'));
-            window.location.href = "admin/accounts";
-        })
-        .catch((error) => {
-            this.handleClick.bind(this, 'tc')
-            console.log('error')
-        });
+            })
+            .then((responseJson) => {
+                localStorage.setItem('token', responseJson.accessToken);
+                console.log(localStorage.getItem('token'));
+                window.location.href = "admin/accounts";
+            })
+            .catch((error) => {
+                this.handleClick.bind(this, 'tc')
+                console.log('error')
+            });
     }
 
     handleErrors(response) {
@@ -109,7 +103,7 @@ export default class Login extends Component {
     }
 
     render() {
-        if(localStorage.getItem('token') !== null)
+        if (localStorage.getItem('token') !== null)
             return <Redirect to='/admin/accounts' />
         return (
             <Grid fluid
@@ -117,7 +111,7 @@ export default class Login extends Component {
                     position: 'absolute', left: '50%', top: '50%',
                     transform: 'translate(-50%, -50%)'
                 }}>
-                <NotificationSystem ref="notificationSystem" style={style}/>
+                <NotificationSystem ref="notificationSystem" style={style} />
                 <Row>
                     <Col md={12}>
                         <Card
@@ -129,8 +123,14 @@ export default class Login extends Component {
                                 <Col md={12}>
                                     <Row>
                                         <Col md={12}>
-                                            <Label>Select Hospital</Label>
-                                            <Select options={server_urls} onChange={this.changeHospitalHandler} />
+                                            <FormGroup controlId="formControlsSelect">
+                                                <ControlLabel>Select</ControlLabel>
+                                                <FormControl componentClass="select" placeholder="select">
+                                                    {server_urls.map((element, key) => {
+                                                        return (<option key={key} value={element.value}>{element.label}</option>)
+                                                    })}
+                                                </FormControl>
+                                            </FormGroup>
                                         </Col>
                                     </Row>
                                     <FormInputs
