@@ -98,7 +98,6 @@ export default class Login extends Component {
             this.handleClick.bind(this, 'tc')
             console.log('error')
         });
-        console.log('e qua?')
     }
 
     handleErrors(response) {
