@@ -110,7 +110,7 @@ export const PERSONAL_INFO_ABI = [
     "stateMutability": "view",
     "type": "function"
   }
-]
+];
 
 export const server_urls = [
   { value: 'https://localhost:3000', label: 'St. John Hospital' },

@@ -7,11 +7,9 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract PersonalInfo is ERC20, AccessControl {
 
-    bytes32 public constant DOCTOR_ROLE = keccak256("DOCTOR_ROLE123456");
     bytes32 public constant PATIENT_ROLE = keccak256("PATIENT_ROLE98765");
 
-    constructor(address root_doctor, address root_patient) public ERC20("MyToken", "TKN") {
-        _setupRole(DOCTOR_ROLE, root_doctor);
+    constructor(address root_patient) public ERC20("MyToken", "TKN") {
         _setupRole(PATIENT_ROLE, root_patient);
     } 
 
@@ -36,19 +34,7 @@ contract PersonalInfo is ERC20, AccessControl {
     }
 
     function getRecord(uint _id) public returns (uint, uint, uint, address, uint256) {
-        // Require doctor role
-        require(hasRole(DOCTOR_ROLE, msg.sender), "Caller is not a doctor");
-
         Record memory currentRecord = records[_id];
         return (currentRecord.id, currentRecord.SpO2, currentRecord.HR, currentRecord.owner, currentRecord.timestamp);
     }
-
-    /*
-    function getRecordbyUser(uint _id, address _owner) public returns (uint, uint, uint, address) {
-        Record memory currentRecord = records[_id];
-        if (currentRecord.owner == _owner) {
-            return (currentRecord.id, currentRecord.SpO2, currentRecord.HR, currentRecord.owner);
-        }
-    }
-    */
 }
