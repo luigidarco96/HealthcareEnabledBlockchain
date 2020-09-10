@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { FormInputs } from 'components/FormInputs/FormInputs.jsx'
 import Button from 'components/CustomButton/CustomButton';
-import { Grid, Row, Col, Label, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
+import { Grid, Row, Col, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 import { Card } from "components/Card/Card.jsx";
 import NotificationSystem from 'react-notification-system';
 import { style } from "variables/Variables.jsx";
 import { Redirect } from 'react-router-dom';
 import { server_urls } from '../config';
-
-import Select from 'react-select';
 
 export default class Login extends Component {
 
@@ -17,8 +15,8 @@ export default class Login extends Component {
         this.handleClick = this.handleClick.bind(this);
 
         this.state = {
-            email: 'jb@gmail.com',
-            password: 'password',
+            email: '',
+            password: '',
             hospital: '',
             radioHospital: "1",
             _notificationSystem: this.refs.notificationSystem
@@ -52,9 +50,9 @@ export default class Login extends Component {
         });
     }
 
-    changeHospitalHandler = event => {
+    changeHospitalHandler = e => {
         this.setState({
-            hospital: event.value
+            hospital: e.target.value
         });
     }
 
@@ -64,9 +62,9 @@ export default class Login extends Component {
             password: this.state.password
         };
 
-        const url = 'https://localhost:3000/login';
+        const url = this.state.hospital;
 
-        fetch(url, {
+        fetch(url + '/login', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -85,6 +83,7 @@ export default class Login extends Component {
             })
             .then((responseJson) => {
                 localStorage.setItem('token', responseJson.accessToken);
+                localStorage.setItem('url', url);
                 console.log(localStorage.getItem('token'));
                 window.location.href = "admin/accounts";
             })
@@ -125,7 +124,7 @@ export default class Login extends Component {
                                         <Col md={12}>
                                             <FormGroup controlId="formControlsSelect">
                                                 <ControlLabel>Select</ControlLabel>
-                                                <FormControl componentClass="select" placeholder="select">
+                                                <FormControl componentClass="select" placeholder="select" onChange={this.changeHospitalHandler}>
                                                     {server_urls.map((element, key) => {
                                                         return (<option key={key} value={element.value}>{element.label}</option>)
                                                     })}
@@ -141,7 +140,7 @@ export default class Login extends Component {
                                                 type: "email",
                                                 bsClass: "form-control",
                                                 placeholder: "email",
-                                                defaultValue: "jb@gmail.com",
+                                                //defaultValue: "jb@gmail.com",
                                                 onChange: this.changeEmailHandler
                                             },
                                             {
@@ -149,7 +148,7 @@ export default class Login extends Component {
                                                 type: "password",
                                                 bsClass: "form-control",
                                                 placeholder: "**********",
-                                                defaultValue: "password",
+                                                //defaultValue: "password",
                                                 onChange: this.changePasswordHandler
                                             }
                                         ]}
