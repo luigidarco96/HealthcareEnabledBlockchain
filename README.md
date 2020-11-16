@@ -29,26 +29,46 @@ Each hospital will have its own server, and a web client can interface with all 
 
 ## Initialization
 
+- Install all packages
 ```bash
 npm install
 ```
 
+- Install web-client packages
 ```bash
-cd client
+cd web-client
 npm install
 ```
 
 ## Deploy
 
+- Start the Ethereum Network
 ```bash
 npx ganache-cli --deterministic
 ```
 
+- Deploy the Smart Contract
 ```bash
 npx oz deploy
 ```
 
+- Start the Gateway
 ```bash
-cd client
+node gateway
+```
+
+- Start the Hospital Server
+```bash
+node hospital-server/server.js
+```
+
+- Start the web-client
+```bash
+cd web-client
 npm start
+```
+
+- Run the edge-device emulation
+```bash
+node edge-device
 ```
